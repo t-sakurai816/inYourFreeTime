@@ -1,0 +1,16 @@
+name: issueToProjects
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  automate-project-columns:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Move issues into pj column
+        uses: alex-page/github-project-automation-plus@v0.2.4
+        with:
+          project: TASK
+          column: Todo
+          repo-token: ${{ secrets.AUTOMATION_TOKEN }}
