@@ -13,7 +13,22 @@ app.use(express.json({ strict: false }))
 
 app.get('/', function (req, res) {
   console.log(process.env.ENV)
-  res.send('Hello World!')
+  res.send(process.env.ENV)
+})
+
+// Get all items from the table
+app.get('/items', function (req, res) {
+  const params = {
+    TableName: TABLE_NAME
+  }
+  dynamoDb.scan(params, function (err, data) {
+    if (err) {
+      console.log(err, err.stack)
+      res.status(500).send(err)
+    } else {
+      res.send(data.Items)
+    }
+  })
 })
 
 // Create endpoint
@@ -22,7 +37,6 @@ app.post('/create', function (req, res) {
 
   data.id = uuid.v1()
   data.createdAt = dt.toFormat('YYYYMMDDHH24MISS')
-
   const params = {
     TableName: TABLE_NAME,
     Item: data
