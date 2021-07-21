@@ -16,6 +16,24 @@ app.get('/', function (req, res) {
   res.send(process.env.ENV)
 })
 
+// Get item from the table
+app.get('/item/:id', function (req, res) {
+  const params = {
+    TableName: TABLE_NAME,
+    Key: {
+      id: req.params.id
+    }
+  }
+  dynamoDb.get(params, (err, data) => {
+    if (err) {
+      console.log(err, err.stack)
+      res.status(500).send(err)
+    } else {
+      res.send(data.Item)
+    }
+  })
+})
+
 // Get all items from the table
 app.get('/items', function (req, res) {
   const params = {
