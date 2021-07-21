@@ -13,7 +13,7 @@ app.use(express.json({ strict: false }))
 
 app.get('/', function (req, res) {
   console.log(process.env.ENV)
-  res.send('Hello World!')
+  res.send(process.env.ENV)
 })
 
 // Create endpoint
