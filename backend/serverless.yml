@@ -3,12 +3,19 @@ service: in-your-free-time
 provider:
   name: aws
   runtime: nodejs14.x
-  stage: dev
+  stage: ${opt:stage, self:custom.defaultStage}
   region: ap-northeast-1
+
+custom:
+  defaultStage: stg
+  environment:
+    stg: ${file(./sls_env/stg.yml)}
+    prd: ${file(./sls_env/prd.yml)}
 
 functions:
   app:
     handler: index.handler
+    environment: ${self:custom.environment.${self:provider.stage}}
     events:
       - http: ANY /
-      - http: 'ANY {proxy+}'
+      - http: "ANY {proxy+}"
