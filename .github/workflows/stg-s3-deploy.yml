@@ -1,12 +1,16 @@
 name: AWS S3 Sync
 
-on: push
+on:
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
+        if: github.event.pull_request.merged == true #マージされたときのみこのjobを実行する
         uses: actions/checkout@v1
         with:
           fetch-depth: 1
