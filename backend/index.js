@@ -5,11 +5,26 @@ const AWS = require('aws-sdk')
 const uuid = require('uuid')
 require('date-utils')
 const dt = new Date()
+const cors = require('cors')
 
 const TABLE_NAME = process.env.TABLE_NAME
 const dynamoDb = new AWS.DynamoDB.DocumentClient()
 
 app.use(express.json({ strict: false }))
+
+const whitelist = ['https://stg-freetime.sakudev.net', 'https://freetime.sakudev.net', 'http://localhost:8080']
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions))
 
 app.get('/', function (req, res) {
   console.log(process.env.ENV)
