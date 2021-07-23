@@ -13,43 +13,18 @@
     </v-app-bar>
 
     <v-main>
-      <v-container>
-        <v-row>
-          <v-col v-for="item in items" :key="item.id" cols="4">
-            <ContentsCard :item="item" />
-          </v-col>
-        </v-row>
-      </v-container>
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>
 
 <script>
-import axios from "axios";
 import HelloWorld from "./components/HelloWorld.vue";
-import ContentsCard from "./components/ContentsCard.vue";
 export default {
   name: "App",
 
   components: {
     HelloWorld,
-    ContentsCard,
-  },
-
-  data() {
-    return {
-      items: null,
-    };
-  },
-  mounted() {
-    axios
-      .get(
-        "https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/items"
-      )
-      .then((response) => (this.items = response.data))
-      .catch((error) => {
-        console.log("ERR!", error);
-      });
   },
 };
 </script>
