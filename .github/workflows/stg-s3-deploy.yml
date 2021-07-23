@@ -18,6 +18,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+      - run: npm install --prefix frontend/
       - run: npm run build --prefix frontend/ --if-present
       - name: "Configure AWS credentials"
         uses: aws-actions/configure-aws-credentials@v1
