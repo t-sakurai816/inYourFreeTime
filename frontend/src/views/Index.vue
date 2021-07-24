@@ -1,7 +1,14 @@
 <template>
   <v-container>
     <v-row>
-      <v-col v-for="item in items" :key="item.id" cols="4">
+      <v-col
+        v-for="item in items"
+        :key="item.id"
+        cols="12"
+        xs="12"
+        sm="6"
+        md="4"
+      >
         <ContentsCard :item="item" />
       </v-col>
     </v-row>
