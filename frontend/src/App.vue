@@ -3,18 +3,7 @@
     id="inspire"
     :style="{ background: $vuetify.theme.themes.light.background }"
   >
-    <header>
-      <v-app-bar app hide-on-scroll color="#ffffff">
-        <v-spacer></v-spacer>
-
-        <v-toolbar-title>inYourFreeTime ~趣味の共有~</v-toolbar-title>
-
-        <v-spacer></v-spacer>
-
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
-      </v-app-bar>
-    </header>
-
+    <Header />
     <v-main>
       <router-view></router-view>
     </v-main>
@@ -42,12 +31,15 @@
 import axios from "axios";
 import HelloWorld from "./components/HelloWorld.vue";
 import ContentsCard from "./components/ContentsCard.vue";
+import Header from "./components/Header.vue";
 export default {
   name: "App",
 
   components: {
     HelloWorld,
+    Header,
     ContentsCard,
+    Header,
   },
 
   data() {
