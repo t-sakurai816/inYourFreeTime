@@ -2,30 +2,30 @@
   <v-card
     class="rounded-xl"
     color="#ffffff"
-    hover="true"
-    link="true"
+    :hover="true"
+    :link="true"
     :to="{
       name: 'Item',
       params: { id: item.id },
     }"
   >
-    <div class="card">
+    <div class="card py-4 px-7">
       <div class="title">
         <h3>{{ item.title }}</h3>
       </div>
-      <div class="desc">
+      <div class="desc pt-4">
         <p>{{ item.desc }}</p>
       </div>
       <div class="user-name">
-        <p>{{ item.userName }}</p>
+        <p>名前：{{ item.userName }}</p>
       </div>
       <div class="age">
-        <p>{{ item.age }}</p>
+        <p>年齢：{{ item.age }}</p>
       </div>
       <div class="gender">
         <p>{{ item.gender }}</p>
       </div>
-      <div class="share-bar">
+      <div class="share-bar text-right">
         <v-icon>mdi-export-variant</v-icon>
         <v-icon>mdi-twitter</v-icon>
       </div>
@@ -45,13 +45,3 @@ export default {
   item: {},
 };
 </script>
-
-<style scoped>
-/* カード全体のパディングを調整 */
-.card {
-  padding: 3% 10%;
-}
-.desc {
-  padding-top: 5%;
-}
-</style>
