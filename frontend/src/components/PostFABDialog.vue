@@ -18,18 +18,36 @@
     </template>
 
     <v-card>
-      <v-card-title class="text-h5 grey lighten-2">
-        Privacy Policy
-      </v-card-title>
+      <v-card-title class="text-h5 grey lighten-2"> Do your Post </v-card-title>
 
       <v-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+        <form>
+          <v-text-field
+            v-model="title"
+            :counter="20"
+            label="Title"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="desc"
+            :counter="140"
+            label="Description"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="name"
+            :counter="10"
+            label="Name"
+            required
+          ></v-text-field>
+          <v-text-field v-model="age" :counter="3" label="Age"></v-text-field>
+          <v-select
+            v-model="gender"
+            :items="genders"
+            label="Gender"
+            data-vv-name="gender"
+          ></v-select>
+        </form>
       </v-card-text>
 
       <v-divider></v-divider>
@@ -45,10 +63,14 @@
 <script>
 export default {
   name: "PostFABDialog",
-  data() {
-    return {
-      dialog: false,
-    };
-  },
+  data: () => ({
+    dialog: false,
+    title: "",
+    desc: "",
+    name: "",
+    age: "",
+    gender: "",
+    genders: ["man", "woman", "others"],
+  }),
 };
 </script>
