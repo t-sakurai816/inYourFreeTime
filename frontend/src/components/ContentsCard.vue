@@ -23,9 +23,20 @@
         <p>年齢：{{ item.age }}</p>
       </div>
       <div class="gender mb-0">{{ item.gender }}</div>
-      <div class="share-bar text-right">
-        <v-icon class="ma-2">mdi-export-variant</v-icon>
-        <v-icon class="ma-2" color="#1DA1F2">mdi-twitter</v-icon>
+      <div class="share-bar">
+        <v-card-actions>
+          <v-btn
+            icon
+            color="#1DA1F2"
+            :absolute="true"
+            :right="true"
+            :link="true"
+            :href="`https://twitter.com/share?url=freetime.sakudev.net/${item.id}`"
+            target="_blank"
+          >
+            <v-icon>mdi-twitter</v-icon>
+          </v-btn>
+        </v-card-actions>
       </div>
     </div>
   </v-card>
