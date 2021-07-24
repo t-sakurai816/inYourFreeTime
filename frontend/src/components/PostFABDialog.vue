@@ -54,13 +54,16 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" text @click="dialog = false"> I accept </v-btn>
+        <v-btn color="primary" text @click="dialog = false" :v-on="postData()">
+          投稿
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "PostFABDialog",
   data: () => ({
@@ -72,5 +75,23 @@ export default {
     gender: "",
     genders: ["man", "woman", "others"],
   }),
+  methods: {
+    postData: function (data) {
+      axios
+        .post(
+          "https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/create",
+          {
+            firstName: "Fred",
+            lastName: "Flintstone",
+          }
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
 };
 </script>
