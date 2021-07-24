@@ -12,17 +12,20 @@
         <ContentsCard :item="item" />
       </v-col>
     </v-row>
+    <PostFABDialog />
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
 import ContentsCard from "../components/ContentsCard.vue";
+import PostFABDialog from "../components/PostFABDialog.vue";
 export default {
   name: "Index",
 
   components: {
     ContentsCard,
+    PostFABDialog,
   },
 
   data() {
