@@ -1,16 +1,19 @@
 <template>
-  <v-app id="inspire">
-    <v-app-bar app shrink-on-scroll>
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+  <v-app
+    id="inspire"
+    :style="{ background: $vuetify.theme.themes.light.background }"
+  >
+    <header>
+      <v-app-bar app hide-on-scroll color="#ffffff">
+        <v-spacer></v-spacer>
 
-      <v-toolbar-title>Application</v-toolbar-title>
+        <v-toolbar-title>inYourFreeTime ~趣味の共有~</v-toolbar-title>
 
-      <v-spacer></v-spacer>
+        <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
-    </v-app-bar>
+        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+      </v-app-bar>
+    </header>
 
     <v-main>
       <router-view></router-view>
@@ -36,12 +39,31 @@
 </template>
 
 <script>
+import axios from "axios";
 import HelloWorld from "./components/HelloWorld.vue";
+import ContentsCard from "./components/ContentsCard.vue";
 export default {
   name: "App",
 
   components: {
     HelloWorld,
+    ContentsCard,
+  },
+
+  data() {
+    return {
+      items: null,
+    };
+  },
+  mounted() {
+    axios
+      .get(
+        "https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/items"
+      )
+      .then((response) => (this.items = response.data))
+      .catch((error) => {
+        console.log("ERR!", error);
+      });
   },
 };
 </script>

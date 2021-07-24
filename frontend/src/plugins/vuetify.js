@@ -6,8 +6,15 @@ import ja from 'vuetify/lib/locale/ja';
 Vue.use(Vuetify);
 
 export default new Vuetify({
-    lang: {
-      locales: { ja },
-      current: 'ja',
-    },
+  theme: {
+    themes: {
+      light: {
+        background: "#EEE"
+      }
+    }
+  },
+  lang: {
+    locales: { ja },
+    current: 'ja',
+  },
 });
