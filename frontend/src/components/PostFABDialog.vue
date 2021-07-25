@@ -18,33 +18,33 @@
     </template>
 
     <v-card>
-      <v-card-title class="text-h5 grey lighten-2"> Do your Post </v-card-title>
+      <v-card-title class="text-h5 grey lighten-2"> 趣味を投稿しよう！</v-card-title>
 
       <v-card-text>
         <form>
           <v-text-field
             v-model="title"
             :counter="20"
-            label="Title"
+            label="趣味（必須）"
             required
           ></v-text-field>
           <v-text-field
             v-model="desc"
             :counter="140"
-            label="Description"
+            label="説明（必須）"
             required
           ></v-text-field>
           <v-text-field
-            v-model="name"
+            v-model="userName"
             :counter="10"
-            label="Name"
+            label="ユーザー名（必須）"
             required
           ></v-text-field>
-          <v-text-field v-model="age" :counter="3" label="Age"></v-text-field>
+          <v-text-field v-model="age" :counter="3" label="年齢"></v-text-field>
           <v-select
             v-model="gender"
             :items="genders"
-            label="Gender"
+            label="性別"
             data-vv-name="gender"
           ></v-select>
         </form>
@@ -77,7 +77,7 @@ export default {
     dialog: false,
     title: "",
     desc: "",
-    name: "",
+    userName: "",
     age: "",
     gender: "",
     genders: ["man", "woman", "others"],
@@ -90,7 +90,7 @@ export default {
           {
             title: this.title,
             desc: this.desc,
-            name: this.name,
+            userName: this.userName,
             age: this.age,
             gender: this.gender,
           }
