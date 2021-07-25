@@ -1,3 +1,3 @@
 # inYourFreeTime/docs
 
-inYourFreeTimeのフロントエンド
+inYourFreeTimeのドキュメント
