@@ -8,7 +8,6 @@
         xs="12"
         sm="6"
         md="4"
-        @add="reload"
       >
         <ContentsCard :item="item" />
       </v-col>
@@ -35,10 +34,6 @@ export default {
     };
   },
 
-  watch: {
-    items: "fetchdata",
-  },
-
   mounted() {
     this.fetchdata();
   },
@@ -52,10 +47,6 @@ export default {
         .catch((error) => {
           console.log("ERR!", error);
         });
-    },
-    reload() {
-      // 子からのemitで発火
-      this.fetchdata();
     },
   },
 };
