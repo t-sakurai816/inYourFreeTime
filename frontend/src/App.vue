@@ -48,9 +48,7 @@ export default {
   },
   mounted() {
     axios
-      .get(
-        "https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/items"
-      )
+      .get(process.env.VUE_APP_API_URL + "/items")
       .then((response) => (this.items = response.data))
       .catch((error) => {
         console.log("ERR!", error);
