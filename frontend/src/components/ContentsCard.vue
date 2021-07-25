@@ -3,7 +3,8 @@
     <v-card
       class="rounded-xl py-4 px-7"
       color="#ffffff"
-
+      :hover="true"
+      @click="movetolink"
     >
       <v-card-title class="text-h5"> {{ item.title }}</v-card-title>
       <v-card-text>
@@ -21,7 +22,6 @@
           :right="true"
           :link="true"
           :href="`https://twitter.com/share?url=freetime.sakudev.net/${item.id}&text=趣味を共有しよう！%0a%23inYourFreeTime%20%23web1week`"
-          style="z-index: 999"
         >
           <v-icon>mdi-twitter</v-icon>
         </v-btn>
@@ -40,5 +40,15 @@ export default {
     },
   },
   item: {},
+  methods: {
+    movetolink(event) {
+      console.log(event.target);
+      if (event.target.nodeName !== "I") {
+        // 現在のurlが自身のidだったときは早期リターン
+        if ("/" + this.$route.params["id"] === window.location.pathname) return;
+        this.$router.push({ name: "Item", params: { id: this.item.id } });
+      }
+    },
+  },
 };
 </script>
