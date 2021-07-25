@@ -54,7 +54,14 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" text @click="dialog = false" :v-on="postData()">
+        <v-btn
+          color="primary"
+          text
+          @click="
+            dialog = false;
+            postData();
+          "
+        >
           投稿
         </v-btn>
       </v-card-actions>
@@ -81,8 +88,11 @@ export default {
         .post(
           "https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/create",
           {
-            firstName: "Fred",
-            lastName: "Flintstone",
+            title: this.title,
+            desc: this.desc,
+            name: this.name,
+            age: this.age,
+            gender: this.gender,
           }
         )
         .then(function (response) {
