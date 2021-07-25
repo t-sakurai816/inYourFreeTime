@@ -98,7 +98,7 @@ export default {
       title: `プログラミング`,
       desc: `Webアプリの開発が好き！Vue.jsをつかってます！`,
       userName: `yCroma`,
-      age: 25,
+      age: "25",
     },
   }),
   methods: {
