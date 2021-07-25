@@ -29,14 +29,12 @@
 
 <script>
 import axios from "axios";
-import HelloWorld from "./components/HelloWorld.vue";
 import ContentsCard from "./components/ContentsCard.vue";
 import Header from "./components/Header.vue";
 export default {
   name: "App",
 
   components: {
-    HelloWorld,
     Header,
     ContentsCard,
   },
