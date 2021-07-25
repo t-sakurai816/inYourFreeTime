@@ -144,6 +144,8 @@ export default {
         this.postData();
         // dialog を閉じる処理
         this.dialog = false;
+        // 親にreloadイベントを発火
+        this.$emit("reload");
       }
     },
   },
