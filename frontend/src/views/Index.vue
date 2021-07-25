@@ -8,6 +8,7 @@
         xs="12"
         sm="6"
         md="4"
+        @add="reload"
       >
         <ContentsCard :item="item" />
       </v-col>
@@ -33,13 +34,29 @@ export default {
       items: null,
     };
   },
+
+  watch: {
+    items: "fetchdata",
+  },
+
   mounted() {
-    axios
-      .get(process.env.VUE_APP_API_URL + "/items")
-      .then((response) => (this.items = response.data))
-      .catch((error) => {
-        console.log("ERR!", error);
-      });
+    this.fetchdata();
+  },
+
+  methods: {
+    fetchdata() {
+      const url = new URL(process.env.VUE_APP_API_URL + `/items`);
+      axios
+        .get(url.href)
+        .then((response) => (this.items = response.data))
+        .catch((error) => {
+          console.log("ERR!", error);
+        });
+    },
+    reload() {
+      // 子からのemitで発火
+      this.fetchdata();
+    },
   },
 };
 </script>
