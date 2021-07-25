@@ -31,21 +31,29 @@
             v-model="title"
             :counter="20"
             label="趣味（必須）"
+            :hint="hints.title"
             required
           ></v-text-field>
-          <v-text-field
+          <v-textarea
             v-model="desc"
             :counter="140"
             label="説明（必須）"
+            :hint="hints.desc"
             required
-          ></v-text-field>
+          ></v-textarea>
           <v-text-field
             v-model="userName"
             :counter="10"
             label="ユーザー名（必須）"
+            :hint="hints.userName"
             required
           ></v-text-field>
-          <v-text-field v-model="age" :counter="3" label="年齢"></v-text-field>
+          <v-text-field
+            v-model="age"
+            :counter="3"
+            label="年齢"
+            :hint="hints.age"
+          ></v-text-field>
           <v-select
             v-model="gender"
             :items="genders"
@@ -86,6 +94,12 @@ export default {
     age: "",
     gender: "",
     genders: ["man", "woman", "others"],
+    hints: {
+      title: `プログラミング`,
+      desc: `Webアプリの開発が好き！Vue.jsをつかってます！`,
+      userName: `yCroma`,
+      age: "25",
+    },
   }),
   methods: {
     postData: function (data) {
