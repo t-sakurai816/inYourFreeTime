@@ -47,6 +47,7 @@
             label="ユーザー名（必須）"
             :hint="hints.userName"
             required
+            @input="$v.userName.$touch()"
           ></v-text-field>
           <v-text-field
             v-model="age"
@@ -84,8 +85,11 @@
 
 <script>
 import axios from "axios";
+import { required } from "vuelidate/lib/validators";
+
 export default {
   name: "PostFABDialog",
+
   data: () => ({
     dialog: false,
     title: "",
@@ -101,6 +105,11 @@ export default {
       age: "25",
     },
   }),
+
+  validations: {
+    userName: { required },
+  },
+
   methods: {
     postData: function (data) {
       axios
@@ -120,6 +129,15 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
+    },
+  },
+
+  computed: {
+    userNameErrors() {
+      const errors = [];
+      if (!this.$v.userName.$dirty) return errors;
+      !this.$v.userName.required && erros.push("Name is required.");
+      return errors;
     },
   },
 };
