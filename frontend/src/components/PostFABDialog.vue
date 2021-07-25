@@ -18,37 +18,90 @@
     </template>
 
     <v-card>
-      <v-card-title class="text-h5 grey lighten-2">
-        Privacy Policy
-      </v-card-title>
+      <v-card-title class="text-h5 grey lighten-2"> 趣味を投稿しよう！</v-card-title>
 
       <v-card-text>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-        mollit anim id est laborum.
+        <form>
+          <v-text-field
+            v-model="title"
+            :counter="20"
+            label="趣味（必須）"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="desc"
+            :counter="140"
+            label="説明（必須）"
+            required
+          ></v-text-field>
+          <v-text-field
+            v-model="userName"
+            :counter="10"
+            label="ユーザー名（必須）"
+            required
+          ></v-text-field>
+          <v-text-field v-model="age" :counter="3" label="年齢"></v-text-field>
+          <v-select
+            v-model="gender"
+            :items="genders"
+            label="性別"
+            data-vv-name="gender"
+          ></v-select>
+        </form>
       </v-card-text>
 
       <v-divider></v-divider>
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="primary" text @click="dialog = false"> I accept </v-btn>
+        <v-btn
+          color="primary"
+          text
+          @click="
+            dialog = false;
+            postData();
+          "
+        >
+          投稿
+        </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "PostFABDialog",
-  data() {
-    return {
-      dialog: false,
-    };
+  data: () => ({
+    dialog: false,
+    title: "",
+    desc: "",
+    userName: "",
+    age: "",
+    gender: "",
+    genders: ["man", "woman", "others"],
+  }),
+  methods: {
+    postData: function (data) {
+      axios
+        .post(
+          "https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/create",
+          {
+            title: this.title,
+            desc: this.desc,
+            userName: this.userName,
+            age: this.age,
+            gender: this.gender,
+          }
+        )
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
 };
 </script>
