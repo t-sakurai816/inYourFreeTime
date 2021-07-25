@@ -86,6 +86,7 @@
 
 <script>
 import axios from "axios";
+import router from "../router";
 import { validationMixin } from "vuelidate";
 import { required, between } from "vuelidate/lib/validators";
 
@@ -130,7 +131,9 @@ export default {
           gender: this.gender,
         })
         .then(function (response) {
-          console.log(response);
+          const post_id = response.data.id;
+          // 投稿に成功したら遷移する
+          router.push({ name: "Item", params: { id: post_id } });
         })
         .catch(function (error) {
           console.log(error);
@@ -142,10 +145,6 @@ export default {
         this.submitStatus = "ERROR";
       } else {
         this.postData();
-        // dialog を閉じる処理
-        this.dialog = false;
-        // 親にreloadイベントを発火
-        this.$emit("reload");
       }
     },
   },
