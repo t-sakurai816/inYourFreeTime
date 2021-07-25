@@ -21,7 +21,7 @@
           :absolute="true"
           :right="true"
           :link="true"
-          :href="`https://twitter.com/share?url=freetime.sakudev.net/${item.id}`"
+          :href="`https://twitter.com/share?url=freetime.sakudev.net/${item.id}&text=趣味を共有しよう！%0a%23inYourFreeTime%20%23web1week`"
         >
           <v-icon>mdi-twitter</v-icon>
         </v-btn>
