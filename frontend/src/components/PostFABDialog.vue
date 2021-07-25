@@ -4,7 +4,6 @@
       <v-container>
         <v-fab-transition>
           <v-btn
-            v-show="!hidden"
             color="#8F9BFF"
             fab
             dark
