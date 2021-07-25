@@ -104,16 +104,13 @@ export default {
   methods: {
     postData: function (data) {
       axios
-        .post(
-          "https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/create",
-          {
-            title: this.title,
-            desc: this.desc,
-            userName: this.userName,
-            age: this.age,
-            gender: this.gender,
-          }
-        )
+        .post(process.env.VUE_APP_API_URL + "/create", {
+          title: this.title,
+          desc: this.desc,
+          userName: this.userName,
+          age: this.age,
+          gender: this.gender,
+        })
         .then(function (response) {
           console.log(response);
         })

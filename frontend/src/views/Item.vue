@@ -33,7 +33,7 @@ export default {
   methods: {
     fetchdata() {
       const url = new URL(
-        `https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/item/${this.$route.params.id}`
+        process.env.VUE_APP_API_URL + `/item/${this.$route.params.id}`
       );
       axios
         .get(url.href)
