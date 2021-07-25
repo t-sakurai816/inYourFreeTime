@@ -13,8 +13,8 @@
 
 <script>
 import axios from "axios";
-import ContentsCard from "./components/ContentsCard.vue";
 import Header from "./components/Header.vue";
+import ContentsCard from "./components/ContentsCard.vue";
 import Footer from "./components/Footer.vue";
 export default {
   name: "App",
