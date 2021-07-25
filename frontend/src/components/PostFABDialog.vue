@@ -29,7 +29,7 @@
           <v-text-field
             v-model="title"
             :error-messages="titleErrors"
-            :counter="20"
+            :counter="30"
             label="趣味（必須）"
             :hint="hints.title"
             required
@@ -49,7 +49,7 @@
           <v-text-field
             v-model="userName"
             :error-messages="userNameErrors"
-            :counter="10"
+            :counter="30"
             label="ユーザー名（必須）"
             :hint="hints.userName"
             required
@@ -87,7 +87,7 @@
 <script>
 import axios from "axios";
 import { validationMixin } from "vuelidate";
-import { required, between } from "vuelidate/lib/validators";
+import { required, between, maxLength } from "vuelidate/lib/validators";
 
 export default {
   name: "PostFABDialog",
@@ -111,9 +111,9 @@ export default {
   mixins: [validationMixin],
 
   validations: {
-    title: { required },
-    desc: { required },
-    userName: { required },
+    title: { required, maxLength: maxLength(30) },
+    desc: { required, maxLength: maxLength(140) },
+    userName: { required, maxLength: maxLength(30) },
     age: {
       between: between(0, 122),
     },
@@ -154,25 +154,25 @@ export default {
     titleErrors() {
       const errors = [];
       if (!this.$v.title.$dirty) return errors;
-      !this.$v.title.required && errors.push("Title is required.");
+      !this.$v.title.required && errors.push("必須です！");
       return errors;
     },
     descErrors() {
       const errors = [];
       if (!this.$v.desc.$dirty) return errors;
-      !this.$v.desc.required && errors.push("Desc is required.");
+      !this.$v.desc.required && errors.push("必須です！");
       return errors;
     },
     userNameErrors() {
       const errors = [];
       if (!this.$v.userName.$dirty) return errors;
-      !this.$v.userName.required && errors.push("Name is required.");
+      !this.$v.userName.required && errors.push("必須です！");
       return errors;
     },
     ageErrors() {
       const errors = [];
       if (!this.$v.age.$dirty) return errors;
-      !this.$v.age.between && errors.push("I don't belive you!");
+      !this.$v.age.between && errors.push("0~122の間で入力してください！");
       return errors;
     },
   },
