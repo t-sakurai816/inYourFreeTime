@@ -31,21 +31,29 @@
             v-model="title"
             :counter="20"
             label="趣味（必須）"
+            hint="プログラミング"
             required
           ></v-text-field>
           <v-text-field
             v-model="desc"
             :counter="140"
             label="説明（必須）"
+            hint="Webアプリの開発が好き！Vue.js最高！"
             required
           ></v-text-field>
           <v-text-field
             v-model="userName"
             :counter="10"
             label="ユーザー名（必須）"
+            hint="yCroma"
             required
           ></v-text-field>
-          <v-text-field v-model="age" :counter="3" label="年齢"></v-text-field>
+          <v-text-field
+            v-model="age"
+            :counter="3"
+            label="年齢"
+            hint="25"
+          ></v-text-field>
           <v-select
             v-model="gender"
             :items="genders"
