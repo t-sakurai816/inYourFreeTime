@@ -4,7 +4,11 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "stg-serve": "vue-cli-service serve --mode stg",
+    "prd-serve": "vue-cli-service serve --mode prd",
     "build": "vue-cli-service build",
+    "stg-build": "vue-cli-service build --mode stg",
+    "prd-build": "vue-cli-service build --mode prd",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -16,6 +20,7 @@
     "roboto-fontface": "*",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
+    "vuelidate": "^0.7.6",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {

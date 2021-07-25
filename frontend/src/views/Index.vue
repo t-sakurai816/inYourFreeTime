@@ -12,17 +12,20 @@
         <ContentsCard :item="item" />
       </v-col>
     </v-row>
+    <PostFABDialog />
   </v-container>
 </template>
 
 <script>
 import axios from "axios";
 import ContentsCard from "../components/ContentsCard.vue";
+import PostFABDialog from "../components/PostFABDialog.vue";
 export default {
   name: "Index",
 
   components: {
     ContentsCard,
+    PostFABDialog,
   },
 
   data() {
@@ -30,15 +33,21 @@ export default {
       items: null,
     };
   },
+
   mounted() {
-    axios
-      .get(
-        "https://8xop5xhioh.execute-api.ap-northeast-1.amazonaws.com/stg/items"
-      )
-      .then((response) => (this.items = response.data))
-      .catch((error) => {
-        console.log("ERR!", error);
-      });
+    this.fetchdata();
+  },
+
+  methods: {
+    fetchdata() {
+      const url = new URL(process.env.VUE_APP_API_URL + `/items`);
+      axios
+        .get(url.href)
+        .then((response) => (this.items = response.data))
+        .catch((error) => {
+          console.log("ERR!", error);
+        });
+    },
   },
 };
 </script>
