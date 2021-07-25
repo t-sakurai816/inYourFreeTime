@@ -2,9 +2,10 @@
   <div>
     <v-main>
       <v-container>
-        <div>test</div>
-        <p>{{ $route.params.id }}</p>
-        <p>{{ item }}</p>
+        <ContentsCard :item="item" />
+        <div class="text-center pt-10">
+          <v-btn href="/">TOPへ戻る</v-btn>
+        </div>
       </v-container>
     </v-main>
   </div>
@@ -12,8 +13,13 @@
 
 <script>
 import axios from "axios";
+import ContentsCard from "../components/ContentsCard.vue";
 export default {
   name: "Item",
+
+  components: {
+    ContentsCard,
+  },
 
   data() {
     return {
