@@ -25,6 +25,7 @@
           :right="true"
           :link="true"
           :href="`https://twitter.com/share?url=freetime.sakudev.net/${item.id}`"
+          style="z-index: 999"
         >
           <v-icon>mdi-twitter</v-icon>
         </v-btn>
