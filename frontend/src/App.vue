@@ -39,7 +39,6 @@ export default {
     HelloWorld,
     Header,
     ContentsCard,
-    Header,
   },
 
   data() {

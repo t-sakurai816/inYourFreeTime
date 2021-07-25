@@ -1,24 +1,29 @@
 <template>
   <v-dialog v-model="dialog" width="500">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn
-        v-show="!hidden"
-        color="pink"
-        fab
-        dark
-        small
-        absolute
-        bottom
-        right
-        v-bind="attrs"
-        v-on="on"
-      >
-        <v-icon>mdi-plus</v-icon>
-      </v-btn>
+      <v-container>
+        <v-fab-transition>
+          <v-btn
+            v-show="!hidden"
+            color="#8F9BFF"
+            fab
+            dark
+            fixed
+            bottom
+            right
+            v-bind="attrs"
+            v-on="on"
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
+        </v-fab-transition>
+      </v-container>
     </template>
 
     <v-card>
-      <v-card-title class="text-h5 grey lighten-2"> 趣味を投稿しよう！</v-card-title>
+      <v-card-title class="text-h5 grey lighten-2"
+        >趣味を投稿しよう！</v-card-title
+      >
 
       <v-card-text>
         <form>
