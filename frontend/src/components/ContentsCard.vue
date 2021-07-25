@@ -3,11 +3,7 @@
     <v-card
       class="rounded-xl py-4 px-7"
       color="#ffffff"
-      :hover="true"
-      :to="{
-        name: 'Item',
-        params: { id: item.id },
-      }"
+
     >
       <v-card-title class="text-h5"> {{ item.title }}</v-card-title>
       <v-card-text>
