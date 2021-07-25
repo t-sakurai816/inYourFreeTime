@@ -28,30 +28,42 @@
         <form>
           <v-text-field
             v-model="title"
+            :error-messages="titleErrors"
             :counter="20"
             label="趣味（必須）"
             :hint="hints.title"
             required
+            @input="$v.title.$touch()"
+            @blur="$v.title.$touch()"
           ></v-text-field>
           <v-textarea
             v-model="desc"
+            :error-messages="descErrors"
             :counter="140"
             label="説明（必須）"
             :hint="hints.desc"
             required
+            @input="$v.desc.$touch()"
+            @blur="$v.desc.$touch()"
           ></v-textarea>
           <v-text-field
             v-model="userName"
+            :error-messages="userNameErrors"
             :counter="10"
             label="ユーザー名（必須）"
             :hint="hints.userName"
             required
+            @input="$v.userName.$touch()"
+            @blur="$v.userName.$touch()"
           ></v-text-field>
           <v-text-field
             v-model="age"
+            :error-messages="ageErrors"
             :counter="3"
             label="年齢"
             :hint="hints.age"
+            @input="$v.age.$touch()"
+            @blur="$v.age.$touch()"
           ></v-text-field>
           <v-select
             v-model="gender"
@@ -66,16 +78,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn
-          color="primary"
-          text
-          @click="
-            dialog = false;
-            postData();
-          "
-        >
-          投稿
-        </v-btn>
+        <v-btn color="primary" text @click="submit"> 投稿 </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -83,8 +86,12 @@
 
 <script>
 import axios from "axios";
+import { validationMixin } from "vuelidate";
+import { required, between } from "vuelidate/lib/validators";
+
 export default {
   name: "PostFABDialog",
+
   data: () => ({
     dialog: false,
     title: "",
@@ -100,6 +107,18 @@ export default {
       age: "25",
     },
   }),
+
+  mixins: [validationMixin],
+
+  validations: {
+    title: { required },
+    desc: { required },
+    userName: { required },
+    age: {
+      between: between(0, 122),
+    },
+  },
+
   methods: {
     postData: function (data) {
       axios
@@ -116,6 +135,43 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
+    },
+    submit() {
+      this.$v.$touch();
+      if (this.$v.$invalid) {
+        this.submitStatus = "ERROR";
+      } else {
+        this.postData();
+        // dialog を閉じる処理
+        this.dialog = false;
+      }
+    },
+  },
+
+  computed: {
+    titleErrors() {
+      const errors = [];
+      if (!this.$v.title.$dirty) return errors;
+      !this.$v.title.required && errors.push("Title is required.");
+      return errors;
+    },
+    descErrors() {
+      const errors = [];
+      if (!this.$v.desc.$dirty) return errors;
+      !this.$v.desc.required && errors.push("Desc is required.");
+      return errors;
+    },
+    userNameErrors() {
+      const errors = [];
+      if (!this.$v.userName.$dirty) return errors;
+      !this.$v.userName.required && errors.push("Name is required.");
+      return errors;
+    },
+    ageErrors() {
+      const errors = [];
+      if (!this.$v.age.$dirty) return errors;
+      !this.$v.age.between && errors.push("I don't belive you!");
+      return errors;
     },
   },
 };
