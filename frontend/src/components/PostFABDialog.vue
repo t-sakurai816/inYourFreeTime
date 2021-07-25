@@ -92,7 +92,7 @@ export default {
     userName: "",
     age: "",
     gender: "",
-    genders: ["man", "woman", "others"],
+    genders: ["🚹", "🚺"],
     hints: {
       title: `プログラミング`,
       desc: `Webアプリの開発が好き！Vue.jsをつかってます！`,
